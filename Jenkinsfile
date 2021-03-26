@@ -13,6 +13,7 @@ pipeline {
     
     parameters { 
           string(name: 'REGION', defaultValue: 'eu-west-1', description: 'AWS Region')
+          string(name: 'PROFILE', defaultValue: 'default', description: 'AWS Profile')
     }
     
     environment{
@@ -56,7 +57,7 @@ pipeline {
                 dir ('repo') {
                     dir ('Release') {
                         sh "ls -la"
-                        sh "./DynamoDbBackupService --region ${REGION}"
+                        sh "./DynamoDbBackupService --region ${REGION} --profile ${PROFILE}"
                     }
                 }
             }
